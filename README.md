@@ -1,7 +1,26 @@
-Ansible Role: Haproxy 
+Ansible Role: HAProxy 
 ======================================
 
-https://github.com/geerlingguy/ansible-role-haproxy
+[![Build Status](https://travis-ci.org/entercloudsuite/ansible-haproxy.svg?branch=master)](https://travis-ci.org/entercloudsuite/ansible-haproxy)
+[![Galaxy](https://img.shields.io/badge/galaxy-entercloudsuite.haproxy-blue.svg?style=flat-square)](https://galaxy.ansible.com/entercloudsuite/haproxy)  
+
+Installs HAProxy on Ubuntu 16.04 (Xenial)
+
+## Requirements
+
+This role requires Ansible 2.4 or higher.
+
+## Role Variables
+
+The role defines most of its variables in `defaults/main.yml`:
+
+## Example Playbook
+
+Run with default vars:
+
+    - hosts: all
+      roles:
+        - { role: ansible-haproxy }
 
 ## Testing
 
@@ -21,7 +40,7 @@ Destroy the Docker container with the command `molecule destroy`.
 
 To run all the steps with just one command, run `molecule test`. 
 
-In order to run the role targeting a VM, use the playbook_deploy.yml file for example with the following command: `ansible-playbook ansible-example/molecule/default/playbook_deploy.yml -i VM_IP_OR_FQDN, -u ubuntu --private-key private.pem`.  
+In order to run the role targeting a VM, use the playbook_deploy.yml file for example with the following command: `ansible-playbook ansible-haproxy/molecule/default/playbook_deploy.yml -i VM_IP_OR_FQDN, -u ubuntu --private-key private.pem`.  
 
 ## License
 

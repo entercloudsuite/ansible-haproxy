@@ -1,6 +1,24 @@
 ---
+package:
+  haproxy:
+    installed: true
 port:
-  tcp:8282:
+  tcp:80:
     listening: true
     ip:
       - 0.0.0.0
+service:
+  haproxy:
+    enabled: true
+    running: true
+user:
+  haproxy:
+    exists: true
+    groups:
+      - haproxy
+group:
+  haproxy:
+    exists: true
+process:
+  haproxy:
+    running: true

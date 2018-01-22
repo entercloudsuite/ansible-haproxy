@@ -29,6 +29,10 @@ deploy:
   - provider: script
     script: ./packer build packer-docker.json
     skip_cleanup: true
+    on:
+      all_branches: true
   - provider: script
     script: ./packer build packer.json
     skip_cleanup: true
+    on:
+      all_branches: true
