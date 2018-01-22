@@ -27,7 +27,7 @@
         }
     ],
     "variables": {
-        "image_name": "ecs-example",
+        "image_name": "ecs-haproxy",
         "ecs_flavor":  "e3standard.x1",
         "ecs_region":  "nl-ams1",
         "ecs_tenant":  "{{env `OS_TENANT`}}",
