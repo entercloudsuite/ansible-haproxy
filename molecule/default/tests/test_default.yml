@@ -17,3 +17,10 @@ group:
 process:
   haproxy:
     running: true
+http:
+  http://localhost:9100:
+    status: 200
+    allow-insecure: false
+    no-follow-redirects: false
+    timeout: 5000
+    body: []
