@@ -15,6 +15,7 @@
   hosts: all
   roles:
     - role: entercloudsuite.prometheus-exporter
+      prometheus_enable_exporter_config_flags: true
       prometheus_exporter_name: haproxy_exporter
       prometheus_exporter_version: 0.9.0
       prometheus_exporter_config_flags:
