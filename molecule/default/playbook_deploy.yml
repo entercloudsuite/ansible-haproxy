@@ -9,6 +9,9 @@
     - { role: ansible-haproxy }
 
 - name: install HAProxy exporter
+  become: true
+  become_method: sudo
+  become_user: root
   hosts: all
   roles:
     - role: entercloudsuite.prometheus-exporter
