@@ -20,7 +20,16 @@ Run with default vars:
 
     - hosts: all
       roles:
-        - { role: ansible-haproxy }
+        - role: ansible-haproxy
+          haproxy_user: haproxyuser
+          haproxy_pass: haproxypass
+          haproxy_conf: |
+            listen web
+                mode http
+                bind *:80
+                default-server port 80
+                server web-0 1.1.1.1:80 check
+
 
 ## Testing
 

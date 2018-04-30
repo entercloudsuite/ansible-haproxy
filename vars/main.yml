@@ -1,2 +1,7 @@
 ---
 # vars
+haproxy_confs:
+  global: "{{ haproxy_global }}"
+  defaults: "{{ haproxy_defaults }}"
+  stats: "{{ haproxy_stats }}"
+  conf: "{{ haproxy_conf }}"

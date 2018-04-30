@@ -3,18 +3,37 @@
 
 - name: add HAProxy repository
   apt_repository:
-    repo: 'ppa:vbernat/haproxy-1.8'
+    repo: 'ppa:vbernat/haproxy-{{ haproxy_version }}'
     state: present
     validate_certs: no
 
-- name: install HAProxy 1.8
+- name: install HAProxy "{{ haproxy_version }}"
   apt:
     name: haproxy
     state: present
   notify:
     - restart haproxy
 
-- name: deploying HAProxy default config
-  template: src=haproxy.cfg.j2 dest=/etc/haproxy/haproxy.cfg
+- name: create systemd directory for override haproxy value
+  file: state=directory path=/etc/systemd/system/haproxy.service.d
+
+- name: increase number of openfiles and process limits
+  copy: src=systemd_override.conf dest=/etc/systemd/system/haproxy.service.d/override.conf
+  notify:
+    - reload haproxy
+
+- name: reload configs systemd
+  systemd: daemon_reload=yes
+
+- name: create conf dir
+  file: state=directory path=/etc/haproxy/conf.d mode=0777
+
+- name: copy defaut haproxy service config
+  copy: src=default_haproxy dest=/etc/default/haproxy
+  notify:
+    - restart haproxy
+
+- name: deploying HAProxy config
+  template: src=haproxy.cfg.j2 dest=/etc/haproxy/haproxy.cfg mode=0644
   notify:
     - reload haproxy
