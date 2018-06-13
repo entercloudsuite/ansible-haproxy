@@ -20,7 +20,7 @@ Run with default vars:
 
     - hosts: all
       roles:
-        - role: ansible-haproxy
+        - role: entercloudsuite.haproxy
           haproxy_user: haproxyuser
           haproxy_pass: haproxypass
           haproxy_conf: |
