@@ -1,16 +1,18 @@
 ---
 
-- name: run the main role
-  hosts: all
-  roles:
-    - { role: ansible-haproxy }
-
 - name: install HAProxy exporter
   hosts: all
   roles:
+    - { role: ansible-haproxy } 
     - role: entercloudsuite.prometheus-exporter
       prometheus_enable_exporter_config_flags: true
       prometheus_exporter_name: haproxy_exporter
       prometheus_exporter_version: 0.9.0
       prometheus_exporter_config_flags:
-        'haproxy.scrape-uri': 'unix:/run/haproxy/admin.sock'
+        '--haproxy.scrape-uri': 'unix:/run/haproxy/admin.sock'
+  post_tasks:
+    - name: add prometheus user to haproxy group
+      user: 
+        name: prometheus
+        groups: haproxy
+        append: yes

@@ -1,5 +1,4 @@
 ---
-
 - name: run the main role
   become: true
   become_method: sudo
@@ -19,4 +18,10 @@
       prometheus_exporter_name: haproxy_exporter
       prometheus_exporter_version: 0.9.0
       prometheus_exporter_config_flags:
-        'haproxy.scrape-uri': 'http://localhost:8282/?stats;csv'
+        '--haproxy.scrape-uri': 'unix:/run/haproxy/admin.sock'
+  post_tasks:
+    - name: add prometheus user to haproxy group
+      user:
+        name: prometheus
+        groups: haproxy
+        append: yes
