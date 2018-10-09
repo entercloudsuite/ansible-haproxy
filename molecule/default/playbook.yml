@@ -10,6 +10,9 @@
       prometheus_exporter_version: 0.9.0
       prometheus_exporter_config_flags:
         '--haproxy.scrape-uri': 'unix:/run/haproxy/admin.sock'
+    - role: entercloudsuite.prometheus-exporter
+      prometheus_exporter_name: node_exporter
+      prometheus_exporter_version: 0.16.0
   post_tasks:
     - name: add prometheus user to haproxy group
       user:
