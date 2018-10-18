@@ -2,6 +2,28 @@
 
 - name: install HAProxy exporter
   hosts: all
+  pre_tasks:
+    - name: update repositories cache
+      apt:
+        update_cache: yes
+    - package: name={{ item }} state=latest
+      with_items:
+        - curl
+        - thin-provisioning-tools
+        - mylvmbackup
+        - jq
+        - libfile-copy-recursive-perl
+        - xinetd
+        - iproute
+        - rsyslog
+        - ca-certificates
+        - sudo
+        - python-apt
+        - software-properties-common
+        - tar
+        - unzip
+        - bzip2
+        - gzip
   roles:
     - role: ansible-haproxy
     - role: entercloudsuite.prometheus-exporter
@@ -13,12 +35,6 @@
     - role: entercloudsuite.prometheus-exporter
       prometheus_exporter_name: node_exporter
       prometheus_exporter_version: 0.16.0
-  post_tasks:
-    - name: add prometheus user to haproxy group
-      user:
-        name: prometheus
-        groups: haproxy
-        append: yes
     - role: entercloudsuite.consul
       consul_version: 1.2.3
       consul_packer_provision: true
@@ -33,6 +49,12 @@
           datacenter: automium
           server: true
           ui: true
+  post_tasks:
+    - name: add prometheus user to haproxy group
+      user:
+        name: prometheus
+        groups: haproxy
+        append: yes
 
 - name: prepare virtualenv
   hosts: all
