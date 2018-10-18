@@ -9,11 +9,7 @@
     - package: name={{ item }} state=latest
       with_items:
         - curl
-        - thin-provisioning-tools
-        - mylvmbackup
         - jq
-        - libfile-copy-recursive-perl
-        - xinetd
         - iproute
         - rsyslog
         - ca-certificates

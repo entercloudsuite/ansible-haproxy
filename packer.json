@@ -31,7 +31,7 @@
         }
     ],
     "variables": {
-		"image_name": "ecs-orchestrator {{env `TRAVIS_BRANCH`}}",
+		"image_name": "ecs-haproxy {{env `TRAVIS_BRANCH`}}",
         "ecs_flavor":  "e3standard.x2",
 		"ecs_region":  "nl-ams1",
 
