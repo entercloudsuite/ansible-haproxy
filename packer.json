@@ -1,5 +1,6 @@
 {
 	"builders": [{
+
 		"type": "openstack",
 		"identity_endpoint": "https://api.entercloudsuite.com/v2.0",
 		"tenant_name": "{{user `ecs_tenant`}}",
@@ -12,27 +13,32 @@
 		"flavor": "{{user `ecs_flavor`}}",
 		"networks": [ "{{user `ecs_network`}}" ],
 		"floating_ip_pool": "PublicNetwork"
+
 	}],
 	"provisioners": [
 		{
 			"type": "shell",
+      "inline_shebang": "/bin/bash -e",
 			"inline": [
+				"until [[ -f /var/lib/cloud/instance/boot-finished ]]; do sleep 1; done",
 				"sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y python2.7 python && sudo apt-get clean"
 			]
         },
         {
             "type": "ansible",
-			"playbook_file": "./molecule/default/playbook_deploy.yml",
-			"ansible_env_vars": [ "ANSIBLE_ROLES_PATH=:/home/travis/build/entercloudsuite/", "ANSIBLE_HOST_KEY_CHECKING=False", "ANSIBLE_SSH_ARGS='-o ForwardAgent=yes -o ControlMaster=auto -o ControlPersist=60s'", "ANSIBLE_NOCOLOR=True" ]
+			"playbook_file": "./molecule/default/playbook.yml",
+			"ansible_env_vars": [ "ANSIBLE_BECOME=True", "ANSIBLE_BECOME_METHOD=sudo", "ANSIBLE_BECOME_USER=root", "ANSIBLE_ROLES_PATH=:/home/travis/build/entercloudsuite/", "ANSIBLE_HOST_KEY_CHECKING=False", "ANSIBLE_SSH_ARGS='-o ForwardAgent=yes -o ControlMaster=auto -o ControlPersist=60s'", "ANSIBLE_NOCOLOR=True" ]
         }
     ],
     "variables": {
-		"image_name": "ecs-haproxy {{env `TRAVIS_BRANCH`}}",
-        "ecs_flavor":  "e3standard.x1",
-        "ecs_region":  "nl-ams1",
+		"image_name": "ecs-orchestrator {{env `TRAVIS_BRANCH`}}",
+        "ecs_flavor":  "e3standard.x2",
+		"ecs_region":  "nl-ams1",
+
         "ecs_tenant":  "{{env `OS_TENANT`}}",
         "ecs_username":  "{{env `OS_USERNAME`}}",
         "ecs_password":  "{{env `OS_PASSWORD`}}",
-        "ecs_network":  "{{env `OS_NETWORK`}}"
+		"ecs_network":  "{{env `OS_NETWORK`}}"
+
     }
 }
