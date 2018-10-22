@@ -33,6 +33,12 @@
   notify:
     - restart haproxy
 
+- name: copy all certificates
+  copy: content="{{ item.key }}" dest="/etc/ssl/private/{{ item.value }}" mode=0400 owner=haproxy
+  with_dict: "{{ haproxy_cert }}"
+  notify:
+    - reload haproxy
+
 - name: deploying HAProxy config
   template: src=haproxy.cfg.j2 dest=/etc/haproxy/haproxy.cfg mode=0644
   notify:

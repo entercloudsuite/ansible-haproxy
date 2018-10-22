@@ -52,3 +52,4 @@ haproxy_stats: |
       stats auth {{ haproxy_user }}:{{ haproxy_pass }}
       stats admin if TRUE
 haproxy_conf: ""
+haproxy_cert: {}
