@@ -34,7 +34,7 @@
     - restart haproxy
 
 - name: copy all certificates
-  copy: content="{{ item.key }}" dest="/etc/ssl/private/{{ item.value }}" mode=0400 owner=haproxy
+  copy: content="{{ item.value }}" dest="/etc/ssl/private/{{ item.key }}" mode=0400 owner=haproxy
   with_dict: "{{ haproxy_cert }}"
   notify:
     - reload haproxy
