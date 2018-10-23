@@ -97,7 +97,7 @@
     - name: create requirements.yml
       copy:
         content: |
-          - src: entercloudsuite.haproxy
+          - src: https://github.com/entercloudsuite/ansible-haproxy
           - src: entercloudsuite.consul
             version: 1.0.1
         dest: "{{ script_path }}/requirements.yml"
