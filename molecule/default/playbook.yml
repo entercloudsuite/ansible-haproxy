@@ -20,6 +20,7 @@
         - unzip
         - bzip2
         - gzip
+        - git
   roles:
     - role: ansible-haproxy
     - role: entercloudsuite.prometheus-exporter
