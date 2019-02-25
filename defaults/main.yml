@@ -30,8 +30,8 @@ haproxy_defaults: |
       mode    http
       option  dontlognull
       timeout connect 8000
-      timeout client  60000
-      timeout server  60000
+      timeout client  60000s
+      timeout server  60000s
       errorfile 400 /etc/haproxy/errors/400.http
       errorfile 403 /etc/haproxy/errors/403.http
       errorfile 408 /etc/haproxy/errors/408.http
