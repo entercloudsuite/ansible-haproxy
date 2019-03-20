@@ -23,6 +23,32 @@
         - git
   roles:
     - role: ansible-haproxy
+    - role: entercloudsuite.keepalived
+      keepalived_options:
+        - name: log-detail
+      keepalived_vrrp_scripts:
+        chk_haproxy:
+          script: '/bin/pidof haproxy'
+          weight: 100
+          interval: 1
+
+      keepalived_vrrp_instances:
+        VI_1:
+          interface: "{{ vip_interface }}"
+          state: MASTER
+          priority: 110
+          virtual_router_id: "{{ virtual_router_id }}"
+
+          authentication:
+            auth_type: PASS
+            auth_pass: 'your_password'
+
+          virtual_ipaddresses:
+            - '{{ virtual_ip }} dev  {{ virtual_router_id }}label {{ virtual_router_id }}:1'
+
+          track_scripts:
+            - chk_haproxy
+
     - role: entercloudsuite.prometheus-exporter
       prometheus_enable_exporter_config_flags: true
       prometheus_exporter_name: haproxy_exporter
