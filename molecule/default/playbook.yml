@@ -32,36 +32,6 @@
           weight: 100
           interval: 1
 
-      keepalived_vrrp_instances:
-        VI_1:
-          interface: ens3
-          state: MASTER
-          priority: 110
-          virtual_router_id: 71
-
-          authentication:
-            auth_type: PASS
-            auth_pass: 'your_password'
-
-          virtual_ipaddresses:
-            - '10.2.255.1 dev ens3 label ens3:1'
-          track_scripts:
-            - chk_haproxy
-        VI_2:
-          interface: ens3
-          state: BACKUP
-          priority: 90
-          virtual_router_id: 72
-
-          authentication:
-            auth_type: PASS
-            auth_pass: 'Kx02If452S5NdtmsIVgtTYYg'
-
-          virtual_ipaddresses:
-            - '10.2.255.2 dev ens3 label ens3:2'
-          track_scripts:
-            - chk_haproxy
-
     - role: entercloudsuite.prometheus-exporter
       prometheus_enable_exporter_config_flags: true
       prometheus_exporter_name: haproxy_exporter
