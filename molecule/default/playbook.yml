@@ -23,14 +23,7 @@
         - git
   roles:
     - role: ansible-haproxy
-    - role: entercloudsuite.keepalived
-      keepalived_options:
-        - name: log-detail
-      keepalived_vrrp_scripts:
-        chk_haproxy:
-          script: '/bin/pidof haproxy'
-          weight: 100
-          interval: 1
+    - role: oefenweb.keepalived
 
     - role: entercloudsuite.prometheus-exporter
       prometheus_enable_exporter_config_flags: true
