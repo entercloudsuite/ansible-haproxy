@@ -35,7 +35,7 @@
     ],
     "variables": {
       "source_image": "6a1e4c2b-d663-492a-a828-205f4b28d9e0",
-		  "image_name": "haproxy-{{env `TRAVIS_BRANCH`}}-{{env `TRAVIS_BUILD_NUMBER`}}",
+		  "image_name": "ecs-haproxy-{{env `TRAVIS_BRANCH`}}-{{env `TRAVIS_BUILD_NUMBER`}}",
       "instance_name": "haproxy",
       "ecs_flavor":  "e3standard.x4",
 		  "ecs_region":  "nl-ams1",
