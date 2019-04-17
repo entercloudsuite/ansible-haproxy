@@ -9,7 +9,7 @@ if [ "$OVFTOOL_MD5" != "e521b64686d65de9e91288225b38d5da" ]; then
   exit 1
 fi
 
-IMAGE_NAME=haproxy-$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER
+IMAGE_NAME=ecs-haproxy-$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER
 ./packer build packer.json
 openstack image save $IMAGE_NAME --file $IMAGE_NAME.qcow2
 qemu-img convert -f qcow2 -O vmdk $IMAGE_NAME.qcow2 automium-dummy.vmdk
