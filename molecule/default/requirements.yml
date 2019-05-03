@@ -4,5 +4,5 @@
   version: 1.0.1
 - src: entercloudsuite.prometheus-exporter
   version: 1.0.4
-- src: oefenweb.keepalived
-  version: v3.0.0
+
+
