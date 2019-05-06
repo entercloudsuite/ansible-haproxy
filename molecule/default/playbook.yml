@@ -23,8 +23,6 @@
         - git
   roles:
     - role: ansible-haproxy
-    - role: oefenweb.keepalived
-
     - role: entercloudsuite.prometheus-exporter
       prometheus_enable_exporter_config_flags: true
       prometheus_exporter_name: haproxy_exporter
