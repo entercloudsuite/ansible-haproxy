@@ -4,6 +4,8 @@ Ansible Role: HAProxy
 [![Build Status](https://travis-ci.org/entercloudsuite/ansible-haproxy.svg?branch=master)](https://travis-ci.org/entercloudsuite/ansible-haproxy)
 [![Galaxy](https://img.shields.io/badge/galaxy-entercloudsuite.haproxy-blue.svg?style=flat-square)](https://galaxy.ansible.com/entercloudsuite/haproxy)  
 
+NOTE: `ansible-haproxy` development is now active on https://github.com/automium/ansible-haproxy
+
 Installs HAProxy on Ubuntu 16.04 (Xenial)
 
 ## Requirements
